@@ -49,7 +49,7 @@ function getScopeOfWork(e) {
     {
       name: 'Commend Intercom',
       qty: e.values[14],
-    },
+    }
   ];
 
   const equipmentList = [];

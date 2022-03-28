@@ -31,9 +31,6 @@ function insertLprTypicals(aviArray, templateResponseFolder) {
     }
     if (array[i] == 'Full Kiosk - Pole Mounted FlashVision on Pads Reversible') {
       copyAllFiles('1eeM9bdYk-d05wUjmfpTrzT6UvdNap6IY', templateResponseFolder);
-    }/*
-    if (array[i] == '') {
-      copyAllFiles('', templateResponseFolder);
     }
     if (array[i] == '') {
       copyAllFiles('', templateResponseFolder);
@@ -70,6 +67,9 @@ function insertLprTypicals(aviArray, templateResponseFolder) {
     }
     if (array[i] == '') {
       copyAllFiles('', templateResponseFolder);
-    }*/
+    }
+    if (array[i] == '') {
+      copyAllFiles('', templateResponseFolder);
+    }
   }
 }
