@@ -9,9 +9,20 @@ function autoFillGoogleDoc(e) {
     const kiosk = e.values[19];
     const kioskTypicals = e.values[20];
     const aviTypicals = e.values[21];
-    const lprTypicals = e.values[22];
     const doorTypicals = e.values[23];
     const aviType = e.values[24];
+    const lprType = e.values[25];
+    var lprTypicals = '';
+    var lprWithAviTypicals = ';'
+
+    // use either FlashVision or HTS LPR typicals
+    if (lprType == 'FlashVision') {
+      lprTypicals = e.values[27];
+      lprWithAviTypicals = e.values[28];
+    } else {  // HTS 
+      lprTypicals = e.values[22];
+      lprWithAviTypicals = e.values[29];
+    }
 
     // initialize equipment list
     var smartStation, laneTraffic, avi, lpr, lotFull, occupancy, commend, gate;
@@ -114,6 +125,7 @@ function autoFillGoogleDoc(e) {
     aviTypicalsArray = aviTypicals.split(', ');
     lprTypicalsArray = lprTypicals.split(', ');
     doorTypicalsArray = doorTypicals.split(', ');
+    lprWithAviTypicalsArray = lprWithAviTypicals.split(', ');
 
     // add in notes and supporting documentation
 
@@ -296,6 +308,8 @@ function autoFillGoogleDoc(e) {
     insertKioskTypicals(kioskTypicalsArray, templateResponseFolder); // kiosk typicals
     insertAviTypicals(aviTypicalsArray, templateResponseFolder); // AVI typicals
     insertLprTypicals(lprTypicalsArray, templateResponseFolder); // LPR typicals
+    insertLprWithAviTypicals(lprWithAviTypicalsArray,templateResponseFolder); // LPR with AVI typicals
+    insertDoorTypicals(doorTypicalsArray, templateResponseFolder);  // OH door typicals
 
     // communication addendums
     body.appendParagraph(mdfMain)
