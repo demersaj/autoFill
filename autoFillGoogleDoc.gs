@@ -87,8 +87,7 @@ function autoFillGoogleDoc(e) {
     const signature = '\nCreated By: \n\nJose Morales\nDirector of Sales, New Construction\njose.morales@flashparking.com\nMobile | (602) - 790 - 1614';
 
     var equipment = getScopeOfWork(e);
-    console.log(equipment);
-
+   
     // fill in template
     body.replaceText('{{projectName}}', projectName);
 
@@ -120,8 +119,6 @@ function autoFillGoogleDoc(e) {
 
     // split typicals into arrays
     kioskTypicalsArray = kioskTypicals.split(', ');
-    console.log('Kiosk typicals: ' + kioskTypicalsArray);
-    console.log(kioskTypicalsArray);
     aviTypicalsArray = aviTypicals.split(', ');
     lprTypicalsArray = lprTypicals.split(', ');
     doorTypicalsArray = doorTypicals.split(', ');
@@ -166,13 +163,11 @@ function autoFillGoogleDoc(e) {
 
     // barrier gates
     if (gate) {
-        console.log('Gate!');
         copyAllFiles('1QuURxuq0AcK2G2vBZzd9nTBXlbsBj15M', templateResponseFolder); // copy sell sheet
     }
 
     // pay on foot notes
     if (typePOF == 'Free Standing') {
-        console.log('Pof: ' + typePOF);
         body.appendParagraph(pofStand)
             .setAttributes(bold);
         body.appendListItem(pofStandNote1)
@@ -181,7 +176,6 @@ function autoFillGoogleDoc(e) {
 
         copyAllFiles('1e9YSDTjubv3HJ4njmGo1-k_cvn8IvAPM', templateResponseFolder); // copy sell sheet
     } else if (typePOF == 'Wall Mounted') {
-        console.log('POF: ' + typePOF);
         body.appendParagraph(pofWall)
             .setAttributes(bold);
         body.appendListItem(pofWallNote1)
@@ -195,7 +189,6 @@ function autoFillGoogleDoc(e) {
 
     // lane traffic control notes
     if (laneTraffic) {
-        console.log('lane traffic control found');
         body.appendParagraph(laneTrafficMain)
             .setAttributes(bold);
         body.appendListItem(laneTrafficNote1)
@@ -207,7 +200,6 @@ function autoFillGoogleDoc(e) {
 
     // avi notes
     if (avi) {
-        console.log('AVI found');
         body.appendParagraph(aviMain)
             .setAttributes(bold);
         body.appendListItem(aviNote1)
@@ -226,7 +218,6 @@ function autoFillGoogleDoc(e) {
 
     // lpr notes
     if (lpr) {
-        console.log('LPR found');
         body.appendParagraph(lprMain)
             .setAttributes(bold);
         body.appendListItem(lprNote1)
@@ -244,7 +235,6 @@ function autoFillGoogleDoc(e) {
 
     // security camera notes
     if (securityCam == 'Yes') {
-        console.log('Security Cam');
         body.appendParagraph(securityCamMain)
             .setAttributes(bold);
         body.appendListItem(securityCamNote1)
@@ -256,7 +246,6 @@ function autoFillGoogleDoc(e) {
 
     // long range readers
     if (longRange == 'Yes') {
-        console.log('Long Range Reader');
         body.appendParagraph(longRangeMain)
             .setAttributes(bold);
         body.appendListItem(longRangeNote1)
@@ -267,12 +256,10 @@ function autoFillGoogleDoc(e) {
         file = DriveApp.getFileById('1lpUPAebwpRuFMPhbpH55sw4f1M_xTy-p');
         fileName = file.getName();
         copy = file.makeCopy(fileName, templateResponseFolder);
-        console.log(copy);
     }
 
     // lot full sign
     if (lotFull) {
-        console.log('Lot Full Sign');
         body.appendParagraph(lotFullMain)
             .setAttributes(bold);
         body.appendListItem(lotFullNote1)
@@ -284,7 +271,6 @@ function autoFillGoogleDoc(e) {
 
     // occupancy signage
     if (occupancy) {
-        console.log('Occupancy Sign');
         body.appendParagraph(occupancyMain)
             .setAttributes(bold);
         body.appendListItem(occupancyNote1)
@@ -303,13 +289,6 @@ function autoFillGoogleDoc(e) {
 
         copyAllFiles('1WzubkQtFXitY7fR9d4TC6HZvk1ChRu0V', templateResponseFolder); // copy 3rd party cut sheet
     }
-
-    // insert typicals
-    insertKioskTypicals(kioskTypicalsArray, templateResponseFolder); // kiosk typicals
-    insertAviTypicals(aviTypicalsArray, templateResponseFolder); // AVI typicals
-    insertLprTypicals(lprTypicalsArray, templateResponseFolder); // LPR typicals
-    insertLprWithAviTypicals(lprWithAviTypicalsArray,templateResponseFolder); // LPR with AVI typicals
-    insertDoorTypicals(doorTypicalsArray, templateResponseFolder);  // OH door typicals
 
     // communication addendums
     body.appendParagraph(mdfMain)
@@ -341,6 +320,13 @@ function autoFillGoogleDoc(e) {
 
     // convert .gdoc to PDF
     convertGdocToPdf(templateResponseFolder);
+
+    // insert typicals
+    insertKioskTypicals(kioskTypicalsArray, templateResponseFolder); // kiosk typicals
+    insertAviTypicals(aviTypicalsArray, templateResponseFolder); // AVI typicals
+    insertLprTypicals(lprTypicalsArray, templateResponseFolder); // LPR typicals
+    insertLprWithAviTypicals(lprWithAviTypicalsArray,templateResponseFolder); // LPR with AVI typicals
+    insertDoorTypicals(doorTypicalsArray, templateResponseFolder);  // OH door typicals
 
     // merge PDFs
     // mergePDFDocuments(templateResponseFolder);
