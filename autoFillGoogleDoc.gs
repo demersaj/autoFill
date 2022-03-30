@@ -109,7 +109,7 @@ function autoFillGoogleDoc(e) {
             occupancy = true;
         } else if (equipment[i].name == 'Commend Intercom') {
             commend = true;
-        } else if (equipment[i].name == 'Barrier Gate') {
+        } else if (equipment[i].name == 'Barrier Gates') {
             gate = true;
         }
     }
@@ -164,6 +164,7 @@ function autoFillGoogleDoc(e) {
     // barrier gates
     if (gate) {
         copyAllFiles('1QuURxuq0AcK2G2vBZzd9nTBXlbsBj15M', templateResponseFolder); // copy sell sheet
+        console.log('Gate found!');
     }
 
     // pay on foot notes
@@ -226,11 +227,12 @@ function autoFillGoogleDoc(e) {
 
         copyAllFiles('1Eyd1N6WXQO9N_mt2c41_U3oXEvMGAVqX', templateResponseFolder); // copy sell sheet
 
-        /*
-		// copy 3rd party cut sheet
-		file = DriveApp.getFileById("1-jFKaGYYAxOFtndz1Mx5XVblz2gfBWoF");
-		fileName = file.getName();
-		copy = file.makeCopy(fileName, templateResponseFolder);*/
+      /*
+		  // copy 3rd party cut sheet
+		  file = DriveApp.getFileById("1-jFKaGYYAxOFtndz1Mx5XVblz2gfBWoF");
+		  fileName = file.getName();
+		  copy = file.makeCopy(fileName, templateResponseFolder);
+      */
     }
 
     // security camera notes
