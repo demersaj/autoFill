@@ -164,7 +164,6 @@ function autoFillGoogleDoc(e) {
     // barrier gates
     if (gate) {
         copyAllFiles('1QuURxuq0AcK2G2vBZzd9nTBXlbsBj15M', templateResponseFolder); // copy sell sheet
-        console.log('Gate found!');
     }
 
     // pay on foot notes
@@ -329,6 +328,8 @@ function autoFillGoogleDoc(e) {
     insertLprTypicals(lprTypicalsArray, templateResponseFolder); // LPR typicals
     insertLprWithAviTypicals(lprWithAviTypicalsArray,templateResponseFolder); // LPR with AVI typicals
     insertDoorTypicals(doorTypicalsArray, templateResponseFolder);  // OH door typicals
+
+    //updateTimeSaved();
 
     // merge PDFs
     // mergePDFDocuments(templateResponseFolder);
